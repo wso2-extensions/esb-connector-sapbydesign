@@ -1,0 +1,24 @@
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:glob="http://sap.com/xi/SAPGlobal20/Global">
+    <soap:Body>
+        <glob:AccountsOpenAmountsQueryRequest_sync>
+            <AccountOpenAmountsSelection>
+                <CompanyID>
+                    <InclusionExclusionCode>I</InclusionExclusionCode>
+                    <IntervalBoundaryTypeCode>1</IntervalBoundaryTypeCode>
+                    <LowerBoundaryIdentifier>%s(companyId)</LowerBoundaryIdentifier>
+                </CompanyID>
+                <AccountID>
+                    <InclusionExclusionCode>I</InclusionExclusionCode>
+                    <IntervalBoundaryTypeCode>1</IntervalBoundaryTypeCode>
+                    <LowerBoundaryIdentifier>A*</LowerBoundaryIdentifier>
+                </AccountID>
+            </AccountOpenAmountsSelection>
+            <ProcessingConditions>
+                <QueryHitsMaximumNumberValue>10</QueryHitsMaximumNumberValue>
+                <QueryHitsUnlimitedIndicator>false</QueryHitsUnlimitedIndicator>
+            </ProcessingConditions>
+            <IncludeOpenOrders>true</IncludeOpenOrders>
+            <IncludeOpenAndInPreparationOrders>true</IncludeOpenAndInPreparationOrders>
+        </glob:AccountsOpenAmountsQueryRequest_sync>
+    </soap:Body>
+</soap:Envelope>

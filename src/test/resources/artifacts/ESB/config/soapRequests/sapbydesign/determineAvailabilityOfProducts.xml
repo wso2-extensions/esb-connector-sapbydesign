@@ -1,0 +1,24 @@
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+    <soap:Header/>
+    <soap:Body>
+        <determineAvailabilityOfProducts>
+            <username>%s(username)</username>
+            <password>%s(password)</password>
+            <sapHost>%s(sapHost)</sapHost>
+            <blocking>%s(blocking)</blocking>
+            <blocking>false</blocking>
+            <planningObject>
+                <ProductAndSupplyPlanningArea>
+                    <ProductInternalID>%s(productInternalID)</ProductInternalID>
+                    <ProductTypeCode>1</ProductTypeCode>
+                    <ProductRequirementSpecificationID/>
+                    <ProductRequirementSpecificationVersionID/>
+                    <SupplyPlanningAreaID>%s(supplyPlanningAreaID)</SupplyPlanningAreaID>
+                </ProductAndSupplyPlanningArea>
+            </planningObject>
+            <scopeOfCheckIndicator>false</scopeOfCheckIndicator>
+            <availabilityDeterminationDuration>%s(availabilityDeterminationDuration)</availabilityDeterminationDuration>
+            <method>determineAvailabilityOfProducts</method>
+        </determineAvailabilityOfProducts>
+    </soap:Body>
+</soap:Envelope>

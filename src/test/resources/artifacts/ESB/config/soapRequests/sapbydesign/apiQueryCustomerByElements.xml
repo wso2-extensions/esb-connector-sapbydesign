@@ -1,0 +1,16 @@
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:glob="http://sap.com/xi/SAPGlobal20/Global">
+    <soap:Header/>
+    <soap:Body>
+        <glob:CustomerByElementsQuery_sync>
+            <CustomerSelectionByElements>
+                <SelectionByInternalID>
+                    <IntervalBoundaryTypeCode>1</IntervalBoundaryTypeCode>
+                    <LowerBoundaryInternalID>%s(customerInternalId)</LowerBoundaryInternalID>
+                </SelectionByInternalID>
+            </CustomerSelectionByElements>
+            <ProcessingConditions>
+                <QueryHitsUnlimitedIndicator>true</QueryHitsUnlimitedIndicator>
+            </ProcessingConditions>
+        </glob:CustomerByElementsQuery_sync>
+    </soap:Body>
+</soap:Envelope>

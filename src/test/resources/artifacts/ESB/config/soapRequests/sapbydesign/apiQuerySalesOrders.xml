@@ -1,0 +1,13 @@
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:glob="http://sap.com/xi/SAPGlobal20/Global">
+    <soap:Header/>
+    <soap:Body>
+        <glob:SalesOrderByElementsQuery_sync>
+            <SalesOrderSelectionByElements>
+                <SelectionByID>
+                    <IntervalBoundaryTypeCode>1</IntervalBoundaryTypeCode>
+                    <LowerBoundaryID>%s(salesOrderInternalId)</LowerBoundaryID>
+                </SelectionByID>
+            </SalesOrderSelectionByElements>
+        </glob:SalesOrderByElementsQuery_sync>
+    </soap:Body>
+</soap:Envelope>

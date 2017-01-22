@@ -1,0 +1,21 @@
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+    <soap:Header/>
+    <soap:Body>
+        <checkCustomerAccountsMaintenance>
+            <username>%s(username)</username>
+            <password>%s(password)</password>
+            <sapHost>%s(sapHost)</sapHost>
+            <blocking>%s(blocking)</blocking>
+            <customerAccountObject>
+                <Customer actionCode="01">
+                    <CustomerIndicator>true</CustomerIndicator>
+                    <CategoryCode>1</CategoryCode>
+                    <Person>
+                        <FamilyName>%s(familyName)</FamilyName>
+                    </Person>
+                </Customer>
+            </customerAccountObject>
+            <method>checkCustomerAccountsMaintenance</method>
+        </checkCustomerAccountsMaintenance>
+    </soap:Body>
+</soap:Envelope>

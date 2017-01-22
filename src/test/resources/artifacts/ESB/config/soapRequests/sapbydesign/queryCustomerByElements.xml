@@ -1,0 +1,25 @@
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+    <soap:Header/>
+    <soap:Body>
+        <queryCustomerByElements>
+            <username>%s(username)</username>
+            <password>%s(password)</password>
+            <sapHost>%s(sapHost)</sapHost>
+            <blocking>%s(blocking)</blocking>
+            <queryObject>
+                <CustomerSelectionByElements>
+                    <SelectionByInternalID>
+                        <IntervalBoundaryTypeCode>1</IntervalBoundaryTypeCode>
+                        <LowerBoundaryInternalID>%s(customerInternalId)</LowerBoundaryInternalID>
+                    </SelectionByInternalID>
+                </CustomerSelectionByElements>
+            </queryObject>
+            <processingConditionsObject>
+                <ProcessingConditions>
+                    <QueryHitsUnlimitedIndicator>true</QueryHitsUnlimitedIndicator>
+                </ProcessingConditions>
+            </processingConditionsObject>
+            <method>queryCustomerByElements</method>
+        </queryCustomerByElements>
+    </soap:Body>
+</soap:Envelope>

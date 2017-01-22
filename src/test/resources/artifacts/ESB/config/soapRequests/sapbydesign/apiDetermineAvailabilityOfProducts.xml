@@ -1,0 +1,18 @@
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:glob="http://sap.com/xi/SAPGlobal20/Global">
+    <soap:Header/>
+    <soap:Body>
+        <glob:ProductAvailabilityDeterminationQuery_sync>
+            <ProductAvailabilityDeterminationQuery>
+                <ConsiderScopeOfCheckIndicator/>
+                <ProductAndSupplyPlanningArea>
+                    <ProductInternalID>%s(productInternalID)</ProductInternalID>
+                    <ProductTypeCode>1</ProductTypeCode>
+                    <ProductRequirementSpecificationID/>
+                    <ProductRequirementSpecificationVersionID/>
+                    <SupplyPlanningAreaID>%s(supplyPlanningAreaID)</SupplyPlanningAreaID>
+                </ProductAndSupplyPlanningArea>
+                <ProductAvailabilityDeterminationHorizonDuration>%s(availabilityDeterminationDuration)</ProductAvailabilityDeterminationHorizonDuration>
+            </ProductAvailabilityDeterminationQuery>
+        </glob:ProductAvailabilityDeterminationQuery_sync>
+    </soap:Body>
+</soap:Envelope>

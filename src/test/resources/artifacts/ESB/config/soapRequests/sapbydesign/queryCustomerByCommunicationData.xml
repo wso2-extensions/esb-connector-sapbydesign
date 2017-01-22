@@ -1,0 +1,31 @@
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+    <soap:Header/>
+    <soap:Body>
+        <queryCustomerByCommunicationData>
+            <username>%s(username)</username>
+            <password>%s(password)</password>
+            <sapHost>%s(sapHost)</sapHost>
+            <blocking>%s(blocking)</blocking>
+            <queryObject>
+                <CustomerSelectionByCommunicationData>
+                    <SelectionByEmailURI>
+                        <InclusionExclusionCode>I</InclusionExclusionCode>
+                        <IntervalBoundaryTypeCode>1</IntervalBoundaryTypeCode>
+                        <LowerBoundaryEmailURI>%s(customerEmail)</LowerBoundaryEmailURI>
+                    </SelectionByEmailURI>
+                </CustomerSelectionByCommunicationData>
+            </queryObject>
+            <processingConditionsObject>
+                <ProcessingConditions>
+                    <QueryHitsUnlimitedIndicator>true</QueryHitsUnlimitedIndicator>
+                </ProcessingConditions>
+            </processingConditionsObject>
+            <requestedElementsObject>
+                <RequestedElements customerRequestCode='2'>
+                    <Customer addressInformationTransmissionRequestCode='4'/>
+                </RequestedElements>
+            </requestedElementsObject>
+            <method>queryCustomerByCommunicationData</method>
+        </queryCustomerByCommunicationData>
+    </soap:Body>
+</soap:Envelope>
