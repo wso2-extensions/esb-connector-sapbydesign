@@ -8,6 +8,7 @@ Pre-requisites:
    The test suite has been configured to download this project automatically.
    If the automatic download fails, download the following project and compile it using the mvn clean install command to update your local repository:
    https://github.com/wso2-extensions/esb-connector-integrationbase
+ - A running SAP ByDesign instance. 
 
 Tested Platform:
  - Mac OSx 10.11.6
