@@ -1,5 +1,7 @@
-<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:a03="http://sap.com/xi/AP/CustomerExtension/BYD/A03Z2" xmlns:glob="http://sap.com/xi/SAPGlobal20/Global" xmlns:glob1="http://sap.com/xi/AP/Globalization">
-    <soap:Header />
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope"
+               xmlns:a03="http://sap.com/xi/AP/CustomerExtension/BYD/A03Z2"
+               xmlns:glob="http://sap.com/xi/SAPGlobal20/Global" xmlns:glob1="http://sap.com/xi/AP/Globalization">
+    <soap:Header/>
     <soap:Body>
         <glob:CustomerByIdentificationQuery_sync>
             <CustomerSelectionByIdentification>

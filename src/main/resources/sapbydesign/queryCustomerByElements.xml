@@ -107,7 +107,6 @@
             }
         ]]>
         </script>
-        <!--SelectionByResponsibleEmployeeUUID IntervalBoundaryTypeCode-->
         <property name="Content-Type"
                   value="application/soap+xml;charset=UTF-8" scope="transport" type="STRING"/>
         <header name="Action"
