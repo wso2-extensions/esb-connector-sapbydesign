@@ -38,8 +38,6 @@
                         <glob:AccountsOpenAmountsQueryRequest_sync>
                             $1
                             $2
-                            <IncludeOpenOrders xmlns="">$3</IncludeOpenOrders>
-                            <IncludeOpenAndInPreparationOrders xmlns="">$4</IncludeOpenAndInPreparationOrders>
                         </glob:AccountsOpenAmountsQueryRequest_sync>
                     </soap:Body>
                 </soap:Envelope>
@@ -47,8 +45,6 @@
             <args>
                 <arg expression="$ctx:queryObject"/>
                 <arg expression="$ctx:processingConditionsObject"/>
-                <arg expression="$ctx:includeOpenOrders"/>
-                <arg expression="$ctx:includeOpenAndInPreparationOrders"/>
             </args>
         </payloadFactory>
         <filter
@@ -61,59 +57,23 @@
 				]]>
                 </script>
             </then>
-            <else>
-                <script language="js"><![CDATA[
-                    var payload = mc.getPayloadXML();
-                    var queryHitsUnlimitedIndicator = payload.ProcessingConditions.QueryHitsUnlimitedIndicator;
-                    if(queryHitsUnlimitedIndicator == "" || queryHitsUnlimitedIndicator == null) {
-                        delete payload.ProcessingConditions;
-                        mc.setPayloadXML(payload);
-                    }
-                ]]>
-                </script>
-            </else>
-        </filter>
-        <filter
-                xpath="$ctx:includeOpenOrders = '' or (not(string($ctx:includeOpenOrders)))">
-            <then>
-                <script language="js"><![CDATA[
-                    var payload = mc.getPayloadXML();
-                    delete payload.IncludeOpenOrders;
-                    mc.setPayloadXML(payload);
-                ]]>
-                </script>
-            </then>
-        </filter>
-        <filter
-                xpath="$ctx:includeOpenAndInPreparationOrders = '' or (not(string($ctx:includeOpenAndInPreparationOrders)))">
-            <then>
-                <script language="js"><![CDATA[
-                    var payload = mc.getPayloadXML();
-                    delete payload.IncludeOpenAndInPreparationOrders;
-                    mc.setPayloadXML(payload);
-                ]]>
-                </script>
-            </then>
         </filter>
         <script language="js"><![CDATA[
             var payload = mc.getPayloadXML();
-            var objs = payload.child("AccountOpenAmountsSelection").children();
-            for (var x=0; x < objs.length(); x++) {
-                var localName = objs[x].localName();
-                var indexOfIBTC = objs[x].toString().indexOf("<IntervalBoundaryTypeCode>");
-                if ((localName == "SelectionByCompanyID" || localName == "SelectionByAccountID"
-                || localName == "SelectionByCreditLimitMaintainedIndicator"|| localName == "SelectionByOrderBlockIndicator"
-                || localName == "SelectionByInvoiceBlockIndicator"|| localName == "SelectionByDeliveryBlockIndicator"
-                || localName == "SelectionByDoubtfulDebtorIndicator")
-                && indexOfIBTC == -1) {
-                    delete objs[x];
-                    mc.setPayloadXML(payload);
-                } else if (indexOfIBTC > -1 && (objs[x].child("IntervalBoundaryTypeCode") == ""
-                || objs[x].child("IntervalBoundaryTypeCode") == null)) {
-                    delete objs[x];
-                    mc.setPayloadXML(payload);
-                }
+            var includeOpenOrders = mc.getProperty("includeOpenOrders");
+            if (includeOpenOrders != "" && includeOpenOrders != null) {
+                payload.IncludeOpenOrders = includeOpenOrders;
             }
+            mc.setPayloadXML(payload);
+        ]]>
+        </script>
+        <script language="js"><![CDATA[
+            var payload = mc.getPayloadXML();
+            var includeOpenAndInPreparationOrders = mc.getProperty("includeOpenAndInPreparationOrders");
+            if (includeOpenAndInPreparationOrders != "" && includeOpenAndInPreparationOrders != null) {
+                payload.IncludeOpenAndInPreparationOrders = includeOpenAndInPreparationOrders;
+            }
+            mc.setPayloadXML(payload);
         ]]>
         </script>
         <property name="Content-Type"
@@ -121,7 +81,6 @@
         <header name="Action"
                 value="http://sap.com/xi/A1S/Global/QueryAccountOpenAmountsIn/FindAccountOpenAmountsRequest"/>
         <property value="true" name="FORCE_ERROR_ON_SOAP_FAULT"/>
-        <property name="HTTP_METHOD" scope="axis2" value="POST"/>
         <header name="To"
                 expression="fn:concat($ctx:uri.var.apiUrl, '/queryaccountopenamountsin?sap-vhost=', $ctx:sapHost)"/>
         <filter source="$ctx:SAP_BLOCKING" regex="true">

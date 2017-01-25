@@ -65,41 +65,12 @@
 				]]>
                 </script>
             </then>
-            <else>
-                <script language="js"><![CDATA[
-                    var payload = mc.getPayloadXML();
-                    var queryHitsUnlimitedIndicator = payload.ProcessingConditions.QueryHitsUnlimitedIndicator;
-                    if(queryHitsUnlimitedIndicator == "" || queryHitsUnlimitedIndicator == null) {
-                        delete payload.ProcessingConditions;
-                        mc.setPayloadXML(payload);
-                    }
-                ]]>
-                </script>
-            </else>
         </filter>
-        <script language="js"><![CDATA[
-            var payload = mc.getPayloadXML();
-            var objs = payload.child("CustomerSelectionByIdentification").children();
-            for (var x=0; x < objs.length(); x++) {
-                var localName = objs[x].localName();
-                var indexOfIBTC = objs[x].toString().indexOf("<IntervalBoundaryTypeCode>");
-                if (localName == "SelectionByInternalID" && indexOfIBTC == -1) {
-                    delete objs[x];
-                    mc.setPayloadXML(payload);
-                } else if (indexOfIBTC > -1 && (objs[x].child("IntervalBoundaryTypeCode") == ""
-                || objs[x].child("IntervalBoundaryTypeCode") == null)) {
-                    delete objs[x];
-                    mc.setPayloadXML(payload);
-                }
-            }
-        ]]>
-        </script>
         <property name="Content-Type"
                   value="application/soap+xml;charset=UTF-8" scope="transport" type="STRING"/>
         <header name="Action"
                 value="http://sap.com/xi/A1S/Global/QueryCustomerIn/FindByIdentificationRequest"/>
         <property value="true" name="FORCE_ERROR_ON_SOAP_FAULT"/>
-        <property name="HTTP_METHOD" scope="axis2" value="POST"/>
         <header name="To"
                 expression="fn:concat($ctx:uri.var.apiUrl, '/querycustomerin1?sap-vhost=', $ctx:sapHost)"/>
         <filter source="$ctx:SAP_BLOCKING" regex="true">
