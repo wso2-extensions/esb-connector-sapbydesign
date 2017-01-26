@@ -303,7 +303,7 @@
         <developerConnection>
             scm:git:https://github.com/wso2-extensions/esb-connector-sapbydesign
         </developerConnection>
-        <tag>org.wso2.carbon.connector.sapbydesign-1.0.0</tag>
+        <tag>HEAD</tag>
     </scm>
     <distributionManagement>
         <repository>
