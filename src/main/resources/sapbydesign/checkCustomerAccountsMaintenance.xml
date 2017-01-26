@@ -62,6 +62,7 @@
                 value="http://sap.com/xi/A1S/Global/ManageCustomerIn/CheckMaintainBundle_V1Request"/>
         <property value="true" name="FORCE_ERROR_ON_SOAP_FAULT"/>
         <header name="To" expression="fn:concat($ctx:uri.var.sapbydesign.apiUrl, '/managecustomerin1?sap-vhost=', $ctx:sapHost)"/>
+        <property name="Accept-Encoding" scope="transport" action="remove"/>
         <filter source="$ctx:SAP_BLOCKING" regex="true">
             <then>
                 <call blocking="true">
