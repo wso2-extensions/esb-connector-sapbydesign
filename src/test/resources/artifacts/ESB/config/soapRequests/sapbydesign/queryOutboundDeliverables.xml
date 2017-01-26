@@ -1,0 +1,26 @@
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+    <soap:Header/>
+    <soap:Body>
+        <queryOutboundDeliverables>
+            <username>%s(username)</username>
+            <password>%s(password)</password>
+            <sapHost>%s(sapHost)</sapHost>
+            <blocking>%s(blocking)</blocking>
+            <queryObject>
+                <OutboundDeliveryFindByElementsRequestMessageBody>
+                    <SelectionByDateShippingDateTime>
+                        <IntervalBoundaryTypeCode>1</IntervalBoundaryTypeCode>
+                        <UpperBoundaryDateTime>%s(odshippingDateTime)</UpperBoundaryDateTime>
+                    </SelectionByDateShippingDateTime>
+                </OutboundDeliveryFindByElementsRequestMessageBody>
+            </queryObject>
+            <processingConditionsObject>
+                <ProcessingConditions>
+                    <QueryHitsMaximumNumberValue>10</QueryHitsMaximumNumberValue>
+                    <QueryHitsUnlimitedIndicator>false</QueryHitsUnlimitedIndicator>
+                </ProcessingConditions>
+            </processingConditionsObject>
+            <method>queryOutboundDeliverables</method>
+        </queryOutboundDeliverables>
+    </soap:Body>
+</soap:Envelope>

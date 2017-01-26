@@ -1,0 +1,32 @@
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+    <soap:Header/>
+    <soap:Body>
+        <checkSalesOrdersMaintenance>
+            <username>%s(username)</username>
+            <password>%s(password)</password>
+            <sapHost>%s(sapHost)</sapHost>
+            <blocking>%s(blocking)</blocking>
+            <basicMessageHeader>
+                <ID/>
+                <UUID/>
+            </basicMessageHeader>
+            <salesOrderObject>
+                <SalesOrder>
+                    <Name languageCode="EN">%s(salesOrderName)</Name>
+                    <Item>
+                        <Product>
+                            <ProductKey>
+                                <ProductTypeCode>1</ProductTypeCode>
+                                <ProductID>%s(productId)</ProductID>
+                            </ProductKey>
+                        </Product>
+                    </Item>
+                    <AccountParty>
+                        <PartyID>%s(partyId)</PartyID>
+                    </AccountParty>
+                </SalesOrder>
+            </salesOrderObject>
+            <method>checkSalesOrdersMaintenance</method>
+        </checkSalesOrdersMaintenance>
+    </soap:Body>
+</soap:Envelope>

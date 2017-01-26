@@ -1,0 +1,40 @@
+Product: Integration tests for WSO2 ESB SAP ByDesign connector
+
+Pre-requisites:
+
+ - Maven 3.x
+ - Java 1.8
+ - The org.wso2.esb.integration.integration-base project is required.
+   The test suite has been configured to download this project automatically.
+   If the automatic download fails, download the following project and compile it using the mvn clean install command to update your local repository:
+   https://github.com/wso2-extensions/esb-connector-integrationbase
+ - A running SAP ByDesign instance. 
+
+Tested Platform:
+ - Mac OSx 10.11.6
+ - WSO2 ESB 5.0.0
+
+Steps to follow in setting integration test.
+
+ 1. Download ESB WSO2 ESB 5.0.0 from official website, compress and place the zip file into "{Connector_Home}/repository/".
+
+ 2. Update the sapbydesign properties file at location "{Connector_Home}/src/test/resources/artifacts/ESB/connector/config" as below.
+	
+	i)      sapHost                             -   The Instance URL of the SAP ByDesign.
+	ii) 	username                            -   The username of the SAP ByDesign instance.
+	iii)	password                            -   The password of the SAP ByDesign instance.
+	iv)     blocking                            -   The blocking parameter to perform the blocking invocations
+	v)      familyName                          -   The family name to create the customer with this name.
+	vi)     partyId                             -   The Party Id to check or create the sales order with this value.
+	vii)    productId                           -   The identifier of the product.
+	viii)   availabilityDeterminationDuration   -   The duration in acceptable format to determine the availability of product.
+	ix)     salesOrderName                      -   The name of the sales order to check or create the sales order.
+	x)      supplyPlanningAreaID                -   The identifier of the supply planning area.
+	xi)     productInternalID                   -   The identifier of the product to check its availability.
+	xii)    companyId                           -   The identifier of the company to find the open amounts.
+	xiii)   customerEmail		                -   The email id of the customer to search.
+	xiv)    odshippingDateTime                  -   The value of the outbound delivery date time.
+	xv)     lowerBoundaryInternalId             -   The lower boundry value of the customer internal id.
+
+ 3. Navigate to "{ESB_Connector_Home}/" and run the following command.
+	  $ mvn clean install

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ~  Copyright (c) 2017, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ ~
+ ~  WSO2 Inc. licenses this file to you under the Apache License,
+ ~  Version 2.0 (the "License"); you may not use this file except
+ ~  in compliance with the License.
+ ~  You may obtain a copy of the License at
+ ~
+ ~    http://www.apache.org/licenses/LICENSE-2.0
+ ~
+ ~  Unless required by applicable law or agreed to in writing,
+ ~  software distributed under the License is distributed on an
+ ~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ ~  KIND, either express or implied.  See the License for the
+ ~  specific language governing permissions and limitations
+ ~  under the License.
+-->
+<template name="maintainSalesOrders" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="salesOrderObject" description="The sales order object to be maintained"/>
+    <parameter name="basicMessageHeader" description="The basic message header fields"/>
+    <sequence>
+        <property name="salesOrderObject" expression="$func:salesOrderObject"/>
+        <property name="basicMessageHeader" expression="$func:basicMessageHeader"/>
+        <payloadFactory media-type="xml">
+            <format>
+                <soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope"
+                               xmlns:glob="http://sap.com/xi/SAPGlobal20/Global"
+                               xmlns:a03="http://sap.com/xi/AP/CustomerExtension/BYD/A03Z2">
+                    <soap:Body>
+                        <glob:SalesOrderBundleMaintainRequest_sync>
+                            <BasicMessageHeader xmlns="">
+                                $1
+                            </BasicMessageHeader>
+                            $2
+                        </glob:SalesOrderBundleMaintainRequest_sync>
+                    </soap:Body>
+                </soap:Envelope>
+            </format>
+            <args>
+                <arg expression="$ctx:basicMessageHeader"/>
+                <arg expression="$ctx:salesOrderObject"/>
+            </args>
+        </payloadFactory>
+        <filter
+                xpath="$ctx:basicMessageHeader = '' or (not(string($ctx:basicMessageHeader)))">
+            <then>
+                <script language="js"><![CDATA[
+                    var payload = mc.getPayloadXML();
+                    delete payload.BasicMessageHeader;
+                    mc.setPayloadXML(payload);
+                ]]>
+                </script>
+            </then>
+        </filter>
+        <property name="Content-Type"
+                  value="application/soap+xml;charset=UTF-8" scope="transport" type="STRING"/>
+        <header name="Action"
+                value="http://sap.com/xi/A1S/Global/ManageSalesOrderIn/MaintainBundleRequest"/>
+        <property value="true" name="FORCE_ERROR_ON_SOAP_FAULT"/>
+        <header name="To" expression="fn:concat($ctx:uri.var.sapbydesign.apiUrl, '/managesalesorderin5?sap-vhost=', $ctx:sapHost)"/>
+        <property name="Accept-Encoding" scope="transport" action="remove"/>
+        <filter source="$ctx:SAP_BLOCKING" regex="true">
+            <then>
+                <call blocking="true">
+                    <endpoint>
+                        <default format="soap12">
+                            <timeout>
+                                <duration>60000</duration>
+                                <responseAction>fault</responseAction>
+                            </timeout>
+                            <suspendOnFailure>
+                                <initialDuration>2000</initialDuration>
+                                <progressionFactor>1.0</progressionFactor>
+                                <maximumDuration>3000</maximumDuration>
+                            </suspendOnFailure>
+                        </default>
+                    </endpoint>
+                </call>
+            </then>
+            <else>
+                <call>
+                    <endpoint>
+                        <default format="soap12">
+                            <timeout>
+                                <duration>60000</duration>
+                                <responseAction>fault</responseAction>
+                            </timeout>
+                            <suspendOnFailure>
+                                <initialDuration>2000</initialDuration>
+                                <progressionFactor>1.0</progressionFactor>
+                                <maximumDuration>3000</maximumDuration>
+                            </suspendOnFailure>
+                        </default>
+                    </endpoint>
+                </call>
+            </else>
+        </filter>
+        <!--Removing the Content-Encoding Header -->
+        <header name="Content-Encoding" action="remove" scope="transport" />
+        <header name="sap-srt_server_info" action="remove" scope="transport"/>
+        <header name="sap-srt_id" action="remove" scope="transport"/>
+        <header name="sap-srt_server_info_ext" action="remove" scope="transport"/>
+    </sequence>
+</template>

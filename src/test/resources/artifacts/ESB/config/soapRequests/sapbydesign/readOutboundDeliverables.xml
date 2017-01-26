@@ -1,0 +1,17 @@
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+    <soap:Header/>
+    <soap:Body>
+        <readOutboundDeliverables>
+            <username>%s(username)</username>
+            <password>%s(password)</password>
+            <sapHost>%s(sapHost)</sapHost>
+            <blocking>%s(blocking)</blocking>
+            <outboundDeliveryObject>
+                <OutboundDelivery>
+                    <UUID>%s(ODUUID)</UUID>
+                </OutboundDelivery>
+            </outboundDeliveryObject>
+            <method>readOutboundDeliverables</method>
+        </readOutboundDeliverables>
+    </soap:Body>
+</soap:Envelope>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ~  Copyright (c) 2017, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ ~
+ ~  WSO2 Inc. licenses this file to you under the Apache License,
+ ~  Version 2.0 (the "License"); you may not use this file except
+ ~  in compliance with the License.
+ ~  You may obtain a copy of the License at
+ ~
+ ~    http://www.apache.org/licenses/LICENSE-2.0
+ ~
+ ~  Unless required by applicable law or agreed to in writing,
+ ~  software distributed under the License is distributed on an
+ ~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ ~  KIND, either express or implied.  See the License for the
+ ~  specific language governing permissions and limitations
+ ~  under the License.
+-->
+<component name="sapbydesign" type="synapse/template">
+    <subComponents>
+        <component name="init">
+            <file>init.xml</file>
+            <description>Login synapse library</description>
+        </component>
+        <component name="checkCustomerAccountsMaintenance">
+            <file>checkCustomerAccountsMaintenance.xml</file>
+            <description>Check customer accounts maintenance</description>
+        </component>
+        <component name="checkSalesOrdersMaintenance">
+            <file>checkSalesOrdersMaintenance.xml</file>
+            <description>Check sales orders maintenance</description>
+        </component>
+        <component name="determineAvailabilityOfProducts">
+            <file>determineAvailabilityOfProducts.xml</file>
+            <description>Determine availability of products</description>
+        </component>
+        <component name="maintainCustomerAccounts">
+            <file>maintainCustomerAccounts.xml</file>
+            <description>Manage customer accounts</description>
+        </component>
+        <component name="maintainSalesOrders">
+            <file>maintainSalesOrders.xml</file>
+            <description>Maintain sales orders</description>
+        </component>
+        <component name="queryAccountOpenAmounts">
+            <file>queryAccountOpenAmounts.xml</file>
+            <description>Find accounts open amount</description>
+        </component>
+        <component name="queryCustomerByCommunicationData">
+            <file>queryCustomerByCommunicationData.xml</file>
+            <description>Find accounts using communication data</description>>
+        </component>
+        <component name="queryCustomerByElements">
+            <file>queryCustomerByElements.xml</file>
+            <description>Find accounts using elements</description>
+        </component>
+        <component name="queryCustomerByIdentification">
+            <file>queryCustomerByIdentification.xml</file>
+            <description>Find accounts using identification data</description>
+        </component>
+        <component name="queryMaterials">
+            <file>queryMaterials.xml</file>
+            <description>Find materials</description>
+        </component>
+        <component name="queryOutboundDeliverables">
+            <file>queryOutboundDeliverables.xml</file>
+            <description>Find outbound deliveries</description>
+        </component>
+        <component name="querySalesOrders">
+            <file>querySalesOrders.xml</file>
+            <description>Find sales orders</description>
+        </component>
+        <component name="readOutboundDeliverables">
+            <file>readOutboundDeliverables.xml</file>
+            <description>Read the data of the outbound delivery business object</description>
+        </component>
+    </subComponents>
+</component>

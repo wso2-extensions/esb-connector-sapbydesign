@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ~  Copyright (c) 2017, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ ~
+ ~  WSO2 Inc. licenses this file to you under the Apache License,
+ ~  Version 2.0 (the "License"); you may not use this file except
+ ~  in compliance with the License.
+ ~  You may obtain a copy of the License at
+ ~
+ ~    http://www.apache.org/licenses/LICENSE-2.0
+ ~
+ ~  Unless required by applicable law or agreed to in writing,
+ ~  software distributed under the License is distributed on an
+ ~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ ~  KIND, either express or implied.  See the License for the
+ ~  specific language governing permissions and limitations
+ ~  under the License.
+-->
+<template name="init" onError="fault"
+          xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="username" description="The username of the SAP ByDesign account"/>
+    <parameter name="password"
+               description="The password of the SAP ByDesign account"/>
+    <parameter name="sapHost"
+               description="The host name of the SAP ByDesign instance"/>
+    <parameter name="blocking"
+               description="The blocking parameter, which helps the connector to perform the blocking invocations to SAP ByDesign"/>
+    <sequence>
+        <property name="sapbydesign.username" expression="$func:username"/>
+        <property name="sapbydesign.password" expression="$func:password"/>
+        <property name="sapHost" expression="$func:sapHost"/>
+        <property name="SAP_BLOCKING" expression="$func:blocking"/>
+        <property name="uri.var.sapbydesign.apiUrl"
+                  expression="fn:concat('https://', $ctx:sapHost, '/sap/bc/srt/scs/sap')"/>
+        <property name="Authorization"
+                  expression="fn:concat('Basic ', base64Encode(fn:concat($ctx:sapbydesign.username, ':', $ctx:sapbydesign.password)))"
+                  scope="transport"/>
+    </sequence>
+</template>
