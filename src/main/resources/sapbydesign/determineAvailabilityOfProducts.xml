@@ -52,7 +52,8 @@
                 value="http://sap.com/xi/A1S/Global/ProductAvailabilityDeterminationIn/DetermineRequest"/>
         <property value="true" name="FORCE_ERROR_ON_SOAP_FAULT"/>
         <header name="To"
-                expression="fn:concat($ctx:uri.var.apiUrl, '/productavailabilitydeterminati?sap-vhost=', $ctx:sapHost)"/>
+                expression="fn:concat($ctx:uri.var.sapbydesign.apiUrl, '/productavailabilitydeterminati?sap-vhost=', $ctx:sapHost)"/>
+        <property name="Accept-Encoding" scope="transport" action="remove"/>
         <filter source="$ctx:SAP_BLOCKING" regex="true">
             <then>
                 <call blocking="true">

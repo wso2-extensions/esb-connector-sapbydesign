@@ -26,14 +26,14 @@
     <parameter name="blocking"
                description="The blocking parameter, which helps the connector to perform the blocking invocations to SAP ByDesign"/>
     <sequence>
-        <property name="username" expression="$func:username"/>
-        <property name="password" expression="$func:password"/>
+        <property name="sapbydesign.username" expression="$func:username"/>
+        <property name="sapbydesign.password" expression="$func:password"/>
         <property name="sapHost" expression="$func:sapHost"/>
         <property name="SAP_BLOCKING" expression="$func:blocking"/>
-        <property name="uri.var.apiUrl"
+        <property name="uri.var.sapbydesign.apiUrl"
                   expression="fn:concat('https://', $ctx:sapHost, '/sap/bc/srt/scs/sap')"/>
         <property name="Authorization"
-                  expression="fn:concat('Basic ', base64Encode(fn:concat($ctx:username, ':', $ctx:password)))"
+                  expression="fn:concat('Basic ', base64Encode(fn:concat($ctx:sapbydesign.username, ':', $ctx:sapbydesign.password)))"
                   scope="transport"/>
     </sequence>
 </template>
