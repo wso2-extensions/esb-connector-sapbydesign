@@ -41,8 +41,7 @@
                 <arg expression="$ctx:processingConditionsObject"/>
             </args>
         </payloadFactory>
-        <property name="Content-Type"
-                  value="application/soap+xml;charset=UTF-8" scope="transport" type="STRING"/>
+        <property name="messageType" scope="axis2" value="application/soap+xml"/>
         <header name="Action"
                 value="http://sap.com/xi/A1S/Global/QueryOutboundDeliveryIn/FindByElementsRequest"/>
         <property value="true" name="FORCE_ERROR_ON_SOAP_FAULT"/>
