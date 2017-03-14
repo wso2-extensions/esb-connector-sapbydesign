@@ -65,7 +65,7 @@
                     <endpoint>
                         <default format="soap12">
                             <timeout>
-                                <duration>60000</duration>
+                                <duration>{$ctx:SAP_CALL_TIMEOUT}</duration>
                                 <responseAction>fault</responseAction>
                             </timeout>
                             <suspendOnFailure>
@@ -82,7 +82,7 @@
                     <endpoint>
                         <default format="soap12">
                             <timeout>
-                                <duration>60000</duration>
+                                <duration>{$ctx:SAP_CALL_TIMEOUT}</duration>
                                 <responseAction>fault</responseAction>
                             </timeout>
                             <suspendOnFailure>

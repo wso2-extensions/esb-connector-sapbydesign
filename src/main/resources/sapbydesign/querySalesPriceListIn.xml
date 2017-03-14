@@ -16,51 +16,32 @@
  ~  specific language governing permissions and limitations
  ~  under the License.
 -->
-<template name="checkCustomerAccountsMaintenance" xmlns="http://ws.apache.org/ns/synapse">
-    <parameter name="customerAccountObject"
-               description="The customer account object to check whether customer can be created, updated, or deleted without errors"/>
-    <parameter name="basicMessageHeader" description="The basic message header fields"/>
+<template name="querySalesPriceListIn" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="queryObject" description="The object which is used to query the sales price lists by elements"/>
     <sequence>
-        <property name="customerAccountObject" expression="$func:customerAccountObject"/>
-        <property name="basicMessageHeader" expression="$func:basicMessageHeader"/>
+        <property name="queryObject" expression="$func:queryObject"/>
         <payloadFactory media-type="xml">
             <format>
                 <soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope"
-                               xmlns:glob="http://sap.com/xi/SAPGlobal20/Global"
-                               xmlns:a03="http://sap.com/xi/AP/CustomerExtension/BYD/A03Z2"
-                               xmlns:glob1="http://sap.com/xi/AP/Globalization">
+                               xmlns:glob="http://sap.com/xi/SAPGlobal20/Global">
                     <soap:Header/>
                     <soap:Body>
-                        <glob:CustomerBundleMaintenanceCheckRequest_sync_V1>
-                            <BasicMessageHeader xmlns="">
-                                $1
-                            </BasicMessageHeader>
-                            $2
-                        </glob:CustomerBundleMaintenanceCheckRequest_sync_V1>
+                        <glob:SalesPriceListFindByTypeCodeAndPropertyIDAndPropertyValueQuery_sync>
+                            $1
+                        </glob:SalesPriceListFindByTypeCodeAndPropertyIDAndPropertyValueQuery_sync>
                     </soap:Body>
                 </soap:Envelope>
             </format>
             <args>
-                <arg expression="$ctx:basicMessageHeader"/>
-                <arg expression="$ctx:customerAccountObject"/>
+                <arg expression="$ctx:queryObject"/>
             </args>
         </payloadFactory>
-        <filter
-                xpath="$ctx:basicMessageHeader = '' or (not(string($ctx:basicMessageHeader)))">
-            <then>
-                <script language="js"><![CDATA[
-                    var payload = mc.getPayloadXML();
-                    delete payload.BasicMessageHeader;
-                    mc.setPayloadXML(payload);
-                ]]>
-                </script>
-            </then>
-        </filter>
         <property name="messageType" scope="axis2" value="application/soap+xml"/>
         <header name="Action"
-                value="http://sap.com/xi/A1S/Global/ManageCustomerIn/CheckMaintainBundle_V1Request"/>
+                value="http://sap.com/xi/A1S/Global/QuerySalesPriceListIn/FindByTypeCodeAndPropertyIDAndPropertyValueRequest"/>
         <property value="true" name="FORCE_ERROR_ON_SOAP_FAULT"/>
-        <header name="To" expression="fn:concat($ctx:uri.var.sapbydesign.apiUrl, '/managecustomerin1?sap-vhost=', $ctx:sapHost)"/>
+        <header name="To"
+                expression="fn:concat($ctx:uri.var.sapbydesign.apiUrl, '/querysalespricelistin?sap-vhost=', $ctx:sapHost)"/>
         <property name="Accept-Encoding" scope="transport" action="remove"/>
         <filter source="$ctx:SAP_BLOCKING" regex="true">
             <then>

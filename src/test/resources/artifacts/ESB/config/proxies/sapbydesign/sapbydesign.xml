@@ -25,6 +25,7 @@
             <property name="password" expression="//password"/>
             <property name="sapHost" expression="//sapHost"/>
             <property name="blocking" expression="//blocking"/>
+            <property name="callTimeout" expression="//callTimeout"/>
             <property name="basicMessageHeader" expression="//basicMessageHeader/*"/>
             <property name="customerAccountObject" expression="//customerAccountObject/*"/>
             <property name="salesOrderObject" expression="//salesOrderObject/*"/>
@@ -44,6 +45,7 @@
                 <password>{$ctx:password}</password>
                 <sapHost>{$ctx:sapHost}</sapHost>
                 <blocking>{$ctx:blocking}</blocking>
+                <callTimeout>{$ctx:callTimeout}</callTimeout>
             </sapbydesign.init>
             <switch source="get-property('method')">
                 <case regex="checkCustomerAccountsMaintenance">

@@ -74,5 +74,13 @@
             <file>readOutboundDeliverables.xml</file>
             <description>Read the data of the outbound delivery business object</description>
         </component>
+        <component name="querySalesPriceListIn">
+            <file>querySalesPriceListIn.xml</file>
+            <description>Find price lists using property valuation</description>
+        </component>
+        <component name="manageSalesPriceListIn">
+            <file>manageSalesPriceListIn.xml</file>
+            <description>Read the sales price lists</description>
+        </component>
     </subComponents>
 </component>
