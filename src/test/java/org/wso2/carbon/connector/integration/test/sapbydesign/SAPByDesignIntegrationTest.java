@@ -45,7 +45,7 @@ public class SAPByDesignIntegrationTest extends ConnectorIntegrationTestBase {
 
     @BeforeClass(alwaysRun = true)
     public void setEnvironment() throws Exception {
-        init("sapbydesign-connector-1.0.0");
+        init("sapbydesign-connector-1.0.1");
         apiEndPoint = "https://" + connectorProperties.getProperty("sapHost") + "/sap/bc/srt/scs/sap";
         nameSpaceMap.put("env", "http://www.w3.org/2003/05/soap-envelope");
         nameSpaceMap.put("n0", "http://sap.com/xi/SAPGlobal20/Global");
