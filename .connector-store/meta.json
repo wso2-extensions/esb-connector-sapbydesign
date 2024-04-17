@@ -8,5 +8,12 @@
     "labels": [
         "Enterprise-Resource-Planning-and-Business-Management"
     ],
-    "releases": []
+    "releases": [
+        {
+            "tagName": "1.0.1",
+            "products": [
+                "ESB 5.0.0"
+            ]
+        }
+    ]
 }
