@@ -10,7 +10,7 @@
     ],
     "releases": [
         {
-            "tagName": "v1.0.1",
+            "tagName": "1.0.1",
             "products": [
                 "ESB 5.0.0"
             ],
