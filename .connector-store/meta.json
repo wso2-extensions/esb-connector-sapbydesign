@@ -4,7 +4,7 @@
     "category": "E-commerce",
     "documentationUrl": "https://docs.wso2.com/display/ESBCONNECTORS/SAP+ByDesign+Connector",
     "description": "The SAP ByDesign connector enables you to connect to your SAP ByDesign instance through the WSO2 ESB. SAP ByDesign is software as a service, it is an enterprise resource planning and business management software product designed for small and medium-sized enterprises.",
-    "status": "Active",
+    "status": "Inactive",
     "labels": [
         "SAP"
     ],
